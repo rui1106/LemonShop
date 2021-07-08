@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Minimal and Clean Sign up / Login and Forgot Form by FreeHTML5.co</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Template by FreeHTML5.co"/>
+    <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive"/>
+    <meta name="author" content="FreeHTML5.co"/>
+
+    <!--
+      //////////////////////////////////////////////////////
+
+      FREE HTML5 TEMPLATE
+      DESIGNED & DEVELOPED by FreeHTML5.co
+
+      Website: 		http://freehtml5.co/
+      Email: 			info@freehtml5.co
+      Twitter: 		http://twitter.com/fh5co
+      Facebook: 		https://www.facebook.com/fh5co
+
+      //////////////////////////////////////////////////////
+       -->
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content=""/>
+    <meta name="twitter:image" content=""/>
+    <meta name="twitter:url" content=""/>
+    <meta name="twitter:card" content=""/>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script type="text/javascript" src="/assets/js/host.js"></script>
+    <script type="text/javascript" src="/assets/js/axios-0.18.0.min.js"></script>
+    <script type="text/javascript" src="/assets/js/vue-2.5.16.js"></script>
+    
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <ul class="menu">
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4" id="app">
+
+
+            <!-- Start Sign In Form -->
+            <form action="#" class="fh5co-form animate-box" data-animate-effect="fadeIn" @submit.prevent="on_submit">
+                <h2>注　册</h2>
+                <div class="form-group">
+                    <label for="name" class="sr-only">Name</label>
+                    <input @blur="check_username" type="text" v-model="username" class="form-control" id="name" placeholder="用户名" name="username" autocomplete="off">
+                    <span v-show="error_name" class="error_tip" style="display: none; color:red; float: right;">{{ error_name_message }}</span>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password" @blur="check_pwd" v-model="password" class="form-control" id="password" placeholder="密码" name="password"
+                           autocomplete="off">
+                    <span v-show="error_password" class="error_tip" style="display: none; color:red; float: right;" >请输入8-20位的密码</span>
+                </div>
+                <div class="form-group">
+                    <label for="re-password" class="sr-only">Phone</label>
+                    <input @blur="check_phone" type="text" class="form-control" id="phone" v-model="mobile" placeholder="手机号" name="mobile"
+                           autocomplete="off">
+                    <span v-show="error_phone" class="error_tip" style="display: none; color:red; float: right;">{{error_phone_message}}</span>
+                </div>
+                <div class="form_group">
+                    <img :src="image_code_url" @click="generate_image_code" class="get_pic_code" id="captcha_img">
+                    <input @blur="check_image_code" type="text" v-model="image_code" name="code_pwd" id="imagecode" class="form-control" autocomplete="off">
+                    <div class="input_tip">图形验证码</div>
+                     <span v-show="error_image_code" class="error_tip" style="display: none; color:red; float: right;">{{ error_image_code_message }}</span>
+                </div>
+                <div class="form_group">
+                    <input type="text" v-model="sms_code" @blur="check_sms_code" name="sms_code" id="smscode" class="form-control" autocomplete="off">
+                    <div class="input_tip">手机验证码
+                    <!-- <a href="javascript:;" class="get_code" @click="send_sms_code">点击获取验证码</a> -->
+                    <a @click="send_sms_code" class="get_msg_code">{{ sms_code_tip }}</a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="remember"><input type="checkbox" id="remember"> Remember Me</label>
+                  <!--   <span id="register-err" v-show="error_message" class="error_tip" style="display: none; color:red; float: right;">{{ error_name_message }}</span> -->
+                     <span class="error_tip" v-show="error_sms_code" style="display: none; color:red; float: right;">{{ error_sms_code_message }}</span>
+                <!-- </div> -->
+                </div>
+                <div class="form-group">
+                    <p>已经注册? <a href="login.html">登录</a></p>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="注册" id="register" class="btn btn-primary">
+                </div>
+            </form>
+            <!-- END Sign In Form -->
+
+        </div>
+    </div>
+    <div class="row" style="padding-top: 60px; clear: both;">
+        <div class="col-md-12 text-center">
+            <p>
+                <small>&copy; All Rights Reserved. Designed by <a href="https://freehtml5.co">FreeHTML5.co</a></small>
+            </p>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/assets/js/common.js"></script>
+<script type="text/javascript" src="/assets/js/register.js"></script>
+
+</body>
+</html>
+

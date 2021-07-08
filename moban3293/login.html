@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Minimal and Clean Sign up / Login and Forgot Form by FreeHTML5.co</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Template by FreeHTML5.co"/>
+    <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive"/>
+    <meta name="author" content="FreeHTML5.co"/>
+
+    <!--
+      //////////////////////////////////////////////////////
+
+      FREE HTML5 TEMPLATE
+      DESIGNED & DEVELOPED by FreeHTML5.co
+
+      Website: 		http://freehtml5.co/
+      Email: 			info@freehtml5.co
+      Twitter: 		http://twitter.com/fh5co
+      Facebook: 		https://www.facebook.com/fh5co
+
+      //////////////////////////////////////////////////////
+       -->
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content=""/>
+    <meta name="twitter:image" content=""/>
+    <meta name="twitter:url" content=""/>
+    <meta name="twitter:card" content=""/>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+
+
+    <!-- Modernizr JS -->
+    <script src="/assets/js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <ul class="menu">
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4" id='app'>
+
+
+            <!-- Start Sign In Form -->
+            <form action="#" class="fh5co-form animate-box" data-animate-effect="fadeIn" @submit.prevent="on_submit">
+                <h2>Sign In</h2>
+                <div class="form-group">
+                    <label for="username" class="sr-only">Username</label>
+                    <input type="text" v-model="username" class="form-control" @blur="check_username" id="username" placeholder="用户名" autocomplete="off">
+                    <div v-show="error_username" class="user_error" v-cloak style="display: none; color:red; float: right;">请填写用户名或手机号</div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password" v-model="password" @blur="check_pwd" class="form-control" id="password" placeholder="密码" autocomplete="off">
+                    <div v-show="error_pwd" class="pwd_error" v-cloak style="display: none; color:red; float: right;">{{ error_pwd_message }}</div>
+                </div>
+                <div class="form-group">
+                    <label for="remember"><input v-model="remember" type="checkbox" id="remember"> Remember Me</label>
+                    <!-- <div id="register-err" class="error_tip" style="display: none; color:red; float: right;"></div> -->
+                </div>
+                <div class="form-group">
+                    <p>没有注册? <a href="register.html">注　册</a></p>
+                </div>
+                <!-- { #                        | <a href="forgot.html">Forgot Password?</a># } -->
+                <div class="form-group">
+                    <input type="submit" value="登　录" id="btn_login" class="btn btn-primary">
+                </div>
+            </form>
+            <!-- END Sign In Form -->
+
+        </div>
+    </div>
+    <div class="row" style="padding-top: 60px; clear: both;">
+        <div class="col-md-12 text-center">
+            <p>
+                <small>&copy; All Rights Reserved. Designed by <a href="https://freehtml5.co">FreeHTML5.co</a></small>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="/assets/js/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<!-- Placeholder -->
+<script src="/assets/js/jquery.placeholder.min.js"></script>
+<!-- Waypoints -->
+<script src="/assets/js/jquery.waypoints.min.js"></script>
+<!-- Main JS -->
+<script src="/assets/js/main.js"></script>
+<script type="text/javascript" src="/assets/js/host.js"></script>
+<script type="text/javascript" src="/assets/js/axios-0.18.0.min.js"></script>
+<script type="text/javascript" src="/assets/js/vue-2.5.16.js"></script>
+<script type="text/javascript" src="/assets/js/login.js"></script>
+
+<!-- <script>
+    $(function () {
+        $('#btn_login').click(function () {
+            // 获取用户名密码
+            username = $('#username').val();
+            psw = $('#password').val();
+            if (!username) {
+                $("#register-err").html("请填写用户名!");
+                $("#register-err").show();
+                return;
+            }
+
+            if (!psw) {
+                $("#register-err").html("请填写密码!");
+                $("#register-err").show();
+                return;
+            }
+
+
+            //提交登录请求
+            $.ajax({
+                url: '/login_info',
+                type: 'post',
+                data: {
+                    username: username,
+                    psw: psw
+                },
+                success: function (resp) {
+                    if (resp.errno == "0") {
+                        // 刷新当前界面
+                        location.href = '/';
+                    } else {
+                        $("#register-err").html(resp.errmsg);
+                        $("#register-err").show();
+                    }
+                }
+            })
+
+        })
+    })
+</script>
+ -->
+
+</body>
+</html>
+
