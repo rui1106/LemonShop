@@ -6,7 +6,7 @@ var vm = new Vue({
           host,
           username:'',
           shopLists:[],
-          shopdetailList:[]
+          shopdetail:'',
         }
       },
     mounted(){
@@ -28,33 +28,19 @@ var vm = new Vue({
                 responseType: 'json',
             })
               .then(response => {
-                    // alert(response.data.length);
                     this.shopLists = response.data;
-                    // alert(this.categorysList[0].name);
-                    // console.log(this.categorysList);
-                    // for(let i=0;i<response.data.length;i++){
-                    //     categorysList.push(response.data[i]);
-                    //     alert(categorysList);
-                    
-                    
-                // }
+                   
                 })
                 .catch(error => {
                     console.log(error.response);
                 })
         },
-      get_shop_detail:function(id){
-        var url = this.host + '/single-product.html?id=' + id
-        axios.get(url, {
-                responseType: 'json',
-            })
-              .then(response => {
-                    this.shopdetailList = response.data
-                })
-                .catch(error => {
-                    console.log(error.response);
-                })
-      },
+        goods_detail:function(id){
+          location.href = 'single-product.html?sku_id='+id;
+          // this.$router.push({path:'/single-product.html',query:{sku_id:id}});
+
+        },
+     
 
   }
 });

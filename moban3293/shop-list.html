@@ -38,7 +38,7 @@
 <body>
 
  
-
+<div id="shop">
 <!--== Start Header Section ==-->
 <header id="header-area">
     <!-- Start PreHeader Area -->
@@ -516,11 +516,11 @@
                         </div>
                     </div>
 
-                    <div class="shop-page-products-wrap" id="shop">
+                    <div class="shop-page-products-wrap">
                         <div class="products-wrapper products-list-view" >
-                            <div class="row" v-for="sku in shopLists">
+                            <div class="row">
                                 <!-- Single Product Start -->
-                                <div class="col-lg-4 col-sm-6">
+                                <div class="col-lg-4 col-sm-6"  v-for="sku in shopLists">
                                     <div class="single-product-item">
                                         <figure class="product-thumb">
                                             <a href="single-product.html"><img src="assets/img/product-1.jpg"
@@ -530,7 +530,7 @@
                                                     class="fa fa-eye"></i></a>
                                         </figure>
                                         <div class="product-details">
-                                            <h2 class="product-title"><a href="single-product.html" @click=get_shop_detail(sku.id)>{{sku.name}}</a></h2>
+                                            <h2 class="product-title"><a href="#" @click=goods_detail(sku.id)>{{sku.name}}</a></h2>
                                             <div class="rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -806,7 +806,7 @@
     </div>
 </div>
 <!--== End Newsletter Area ==-->
-
+</div>
 <!--== Start Footer Area ==-->
 <footer id="footer-area">
     <!-- Footer Widget Area Start -->

@@ -37,7 +37,7 @@
 
 <body>
  
-
+<div id='shop_detail'>
 <!--== Start Header Section ==-->
 <header id="header-area">
     <!-- Start PreHeader Area -->
@@ -523,7 +523,7 @@
                         <!-- Product Details Start -->
                         <div class="col-lg-7">
                             <div class="product-details">
-                                <h2><a href="single-product.html">MH02-Gray</a></h2>
+                                <h2><a href="single-product.html">{{shopdetail.name}}</a></h2>
 
                                 <div class="rating">
                                     <i class="fa fa-star"></i>
@@ -533,7 +533,7 @@
                                     <i class="fa fa-star-o"></i>
                                 </div>
 
-                                <span class="price">$52.00</span>
+                                <span class="price">{{shopdetail.price}}</span>
 
                                 <div class="product-info-stock-sku">
                                     <span class="product-stock-status text-success">In Stock</span>
@@ -704,7 +704,7 @@
                                                     <div class="ratting-form-wrapper">
                                                         <h3>Add your Comments</h3>
                                                         <form action="#" method="post">
-                                                            <div class="ratting-form row">
+                                                Error: Unexpected token }            <div class="ratting-form row">
                                                                 <div class="col-12 mb-4">
                                                                     <h5>Rating:</h5>
                                                                     <div class="ratting-star fix">
@@ -785,7 +785,7 @@
     </div>
 </div>
 <!--== End Newsletter Area ==-->
-
+</div>
 <!--== Start Footer Area ==-->
 <footer id="footer-area">
     <!-- Footer Widget Area Start -->
@@ -934,5 +934,6 @@
 <script type="text/javascript" src="/assets/js/axios-0.18.0.min.js"></script>
 <script type="text/javascript" src="/assets/js/vue-2.5.16.js"></script>
 <script src="assets/js/index.js"></script>
+<script src="assets/js/shop_detail.js"></script>
 </body>
 </html>
