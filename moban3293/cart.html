@@ -54,11 +54,19 @@
                 </div>
 
                 <div class="col-md-7 col-lg-6 mt-xs-10">
-                    <div class="site-setting-menu">
+                    <div class="site-setting-menu" id="index">
                         <ul class="nav justify-content-center justify-content-md-end">
-                            <li><a href="my-account.html">我的账户</a></li>
+                            <div v-if="username">欢迎光临本店！<em style="color: pink">{{username}}</em>
+                            <a class="quit" @click="fnQuit">退出</a>
+                            </div>
+
+                            <div v-else>
+                            <a  href="login.html" class="red" style="color: pink">登 录</a>
+                            <span>|</span>
+                            <a  href="registered.html" class="red" style="color: pink">注 册</a>
+                            </div>
+                            <li><a href="my-account.html">我的账户</a><li>
                             <li><a href="wishlist.html">心愿单</a></li>
-                            <li><a href="login-register.html">登录</a></li>
                            <!--  <li class="switcher dropdown-show"><a href="#" class="arrow-toggle">English</a>
                                 <ul class="dropdown-nav">
                                     <li><a href="#">Bengali</a></li>
@@ -874,5 +882,9 @@
 
 <!--=== Active Js ===-->
 <script src="assets/js/active.js"></script>
+<script type="text/javascript" src="/assets/js/host.js"></script>
+<script type="text/javascript" src="/assets/js/axios-0.18.0.min.js"></script>
+<script type="text/javascript" src="/assets/js/vue-2.5.16.js"></script>
+<script src="assets/js/index.js"></script>
 </body>
 </html>

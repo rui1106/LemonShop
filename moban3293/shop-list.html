@@ -55,11 +55,19 @@
                 </div>
 
                 <div class="col-md-7 col-lg-6 mt-xs-10">
-                    <div class="site-setting-menu">
+                    <div class="site-setting-menu" id="index">
                         <ul class="nav justify-content-center justify-content-md-end">
-                            <li><a href="my-account.html">我的账户</a></li>
+                            <div v-if="username">欢迎光临本店！<em style="color: pink">{{username}}</em>
+                            <a class="quit" @click="fnQuit">退出</a>
+                            </div>
+
+                            <div v-else>
+                            <a  href="login.html" class="red" style="color: pink">登 录</a>
+                            <span>|</span>
+                            <a  href="registered.html" class="red" style="color: pink">注 册</a>
+                            </div>
+                            <li><a href="my-account.html">我的账户</a><li>
                             <li><a href="wishlist.html">心愿单</a></li>
-                            <li><a href="login-register.html">登录</a></li>
                            <!--  <li class="switcher dropdown-show"><a href="#" class="arrow-toggle">English</a>
                                 <ul class="dropdown-nav">
                                     <li><a href="#">Bengali</a></li>
@@ -508,9 +516,9 @@
                         </div>
                     </div>
 
-                    <div class="shop-page-products-wrap">
-                        <div class="products-wrapper products-list-view">
-                            <div class="row">
+                    <div class="shop-page-products-wrap" id="shop">
+                        <div class="products-wrapper products-list-view" >
+                            <div class="row" v-for="sku in shopLists">
                                 <!-- Single Product Start -->
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="single-product-item">
@@ -522,8 +530,7 @@
                                                     class="fa fa-eye"></i></a>
                                         </figure>
                                         <div class="product-details">
-                                            <h2 class="product-title"><a href="single-product.html">Rival Field
-                                                Messenger</a></h2>
+                                            <h2 class="product-title"><a href="single-product.html" @click=get_shop_detail(sku.id)>{{sku.name}}</a></h2>
                                             <div class="rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -531,10 +538,10 @@
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                             </div>
-                                            <span class="product-price">$40.99</span>
+                                            <span class="product-price">{{sku.price}}</span>
 
-                                            <p class="pro-desc">Ideal for cold-weather training or work outdoors, the Chaz Hoodie promises superior warmth with every wear. Thick material blocks out the wind as ribbed cuffs and bottom band seal in body heat.</p>
-
+                                            <!-- <p class="pro-desc">Ideal for cold-weather training or work outdoors, the Chaz Hoodie promises superior warmth with every wear. Thick material blocks out the wind as ribbed cuffs and bottom band seal in body heat.</p> -->
+                                            <p class="pro-desc">{{sku.caption}}</p>
                                             <div class="product-meta">
                                                 <a href="#" class="btn btn-round btn-cart" title="Add to Cart"><i
                                                         class="fa fa-shopping-cart"></i></a>
@@ -549,7 +556,7 @@
                                 <!-- Single Product End -->
 
                                 <!-- Single Product Start -->
-                                <div class="col-lg-4 col-sm-6">
+                               <!--  <div class="col-lg-4 col-sm-6">
                                     <div class="single-product-item">
                                         <figure class="product-thumb">
                                             <a href="single-product.html"><img src="assets/img/product-4.jpg"
@@ -582,11 +589,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- Single Product End -->
+                                </div> -->
+                                <!-- < !-- Single Product End -->
 
                                 <!-- Single Product Start -->
-                                <div class="col-lg-4 col-sm-6">
+                                <!-- <div class="col-lg-4 col-sm-6">
                                     <div class="single-product-item">
                                         <figure class="product-thumb">
                                             <a href="single-product.html"><img src="assets/img/product-3.jpg"
@@ -620,10 +627,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Single Product End -->
+                                < !-- Single Product End -->
 
                                 <!-- Single Product Start -->
-                                <div class="col-lg-4 col-sm-6">
+                                <!-- <div class="col-lg-4 col-sm-6">
                                     <div class="single-product-item">
                                         <figure class="product-thumb">
                                             <a href="single-product.html"><img src="assets/img/product-2.jpg"
@@ -657,10 +664,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Single Product End -->
+                                < !-- Single Product End -->
 
                                 <!-- Single Product Start -->
-                                <div class="col-lg-4 col-sm-6">
+                               <!--  <div class="col-lg-4 col-sm-6">
                                     <div class="single-product-item">
                                         <figure class="product-thumb">
                                             <a href="single-product.html"><img src="assets/img/product-5.jpg"
@@ -693,11 +700,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- Single Product End -->
 
                                 <!-- Single Product Start -->
-                                <div class="col-lg-4 col-sm-6">
+                                <!-- <div class="col-lg-4 col-sm-6">
                                     <div class="single-product-item">
                                         <figure class="product-thumb">
                                             <a href="single-product.html"><img src="assets/img/product-6.jpg"
@@ -730,7 +737,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- Single Product End -->
                             </div>
                         </div>
@@ -1044,5 +1051,10 @@
 
 <!--=== Active Js ===-->
 <script src="assets/js/active.js"></script>
+<script type="text/javascript" src="/assets/js/host.js"></script>
+<script type="text/javascript" src="/assets/js/axios-0.18.0.min.js"></script>
+<script type="text/javascript" src="/assets/js/vue-2.5.16.js"></script>
+<script src="assets/js/index.js"></script>
+<script src="assets/js/shop.js"></script>
 </body>
 </html>

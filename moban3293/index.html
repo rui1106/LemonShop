@@ -36,7 +36,7 @@
 </head>
 
 <body>
- 
+<div id="index"> 
 
 <!--== Start Header Section ==-->
 <header id="header-area">
@@ -67,10 +67,19 @@
 
                 <div class="col-md-7 col-lg-6 mt-xs-10">
                     <div class="site-setting-menu">
-                        <ul class="nav justify-content-center justify-content-md-end">
-                            <li><a href="my-account.html">我的账户</a></li>
+                        <ul class="nav justify-content-center justify-content-md-end" >
+                            <div v-if="username">欢迎光临本店！<em style="color: pink">{{username}}</em>
+                            <a class="quit" @click="fnQuit">退出</a>
+                            </div>
+
+                            <div v-else>
+                            <a  href="login.html" class="red" style="color: pink">登 录</a>
+                            <span>|</span>
+                            <a  href="registered.html" class="red" style="color: pink">注 册</a>
+                            </div>
+                            <li><a href="my-account.html">我的账户</a><li>
                             <li><a href="wishlist.html">心愿单</a></li>
-                            <li><a href="login.html">登录</a></li>
+                            <!-- <li><a href="login.html">登录</a></li> -->
                            <!--  <li class="switcher dropdown-show"><a href="#" class="arrow-toggle">English</a>
                                 <ul class="dropdown-nav">
                                     <li><a href="#">Bengali</a></li>
@@ -199,15 +208,15 @@
                 <!-- Categories List Start -->
                 <div class="col-10 col-lg-3">
                     <div class="categories-list-wrap">
-                        <button class="btn btn-category d-none d-lg-inline-block"><i class="fa fa-bars"></i> Categories
+                        <button class="btn btn-category d-none d-lg-inline-block"><i class="fa fa-bars"></i> 分类
                         </button>
                         <ul class="category-list-menu">
-                            <li class="category-item-parent dropdown-show">
-                                <a href="#" class="category-item arrow-toggle">
+                            <li class="category-item-parent dropdown-show" v-for="category in categorysList">
+                                <a href="shop-list.html?category_id={{category.name}}" class="category-item arrow-tog" >
                                     <img src="assets/img/icons/desktop.png" alt="Computer"/>
-                                    <span>Computer</span>
+                                    <span>{{category.name}}</span>
                                 </a>
-                                <ul class="mega-menu-wrap dropdown-nav">
+                                <!-- <ul class="mega-menu-wrap dropdown-nav">
                                     <li class="mega-menu-item"><a href="#" class="mega-item-title">Laptop</a>
                                         <ul>
                                             <li><a href="#">Has Laptop Price</a></li>
@@ -215,9 +224,9 @@
                                             <li><a href="#">Has Laptop Rom</a></li>
                                             <li><a href="#">Has Laptop SSD</a></li>
                                         </ul>
-                                    </li>
+                                    </li> -->
 
-                                    <li class="mega-menu-item"><a href="#" class="mega-item-title">Desktop</a>
+                            <!--         <li class="mega-menu-item"><a href="#" class="mega-item-title">Desktop</a>
                                         <ul>
                                             <li><a href="#">Has Laptop Price</a></li>
                                             <li><a href="#">Has Laptop Ram</a></li>
@@ -240,7 +249,7 @@
                             <li class="category-item-parent dropdown-show">
                                 <a href="#" class="category-item arrow-toggle">
                                     <img src="assets/img/icons/mobile.png" alt="Mobile"/>
-                                    <span>Mobile</span>
+                                    <span>手机</span>
                                 </a>
                                 <ul class="mega-menu-wrap dropdown-nav">
                                     <li class="mega-menu-item"><a href="#" class="mega-item-title">Sumsang</a>
@@ -335,7 +344,7 @@
                                 </a>
                             </li>
                             <li class="category-item-parent">
-                                <a href="#" class="category-item btn-more">More Categories</a>
+                                <a href="#" class="category-item btn-more">More Categories</a> -->
                             </li>
                         </ul>
                     </div>
@@ -2172,7 +2181,7 @@
     </div>
 </div>
 <!--== End Newsletter Area ==-->
-
+</div>
 <!--== Start Footer Area ==-->
 <footer id="footer-area">
     <!-- Footer Widget Area Start -->
@@ -2417,5 +2426,9 @@
 
 <!--=== Active Js ===-->
 <script src="assets/js/active.js"></script>
+<script type="text/javascript" src="assets/js/host.js"></script>
+<script type="text/javascript" src="assets/js/axios-0.18.0.min.js"></script>
+<script type="text/javascript" src="assets/js/vue-2.5.16.js"></script>
+<script src="assets/js/index.js"></script>
 </body>
 </html>

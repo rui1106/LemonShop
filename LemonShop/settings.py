@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.verifications',
     'corsheaders',
-    'apps.users'
+    'apps.users',
+    'apps.goods'
 ]
 
 MIDDLEWARE = [
@@ -161,7 +162,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 AUTH_USER_MODEL = 'users.User'
 
 # CORS
@@ -221,6 +221,7 @@ REST_FRAMEWORK = {
     ),
 }
 import datetime
+
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
     'JWT_RESPONSE_PAYLOAD_HANDLER':
