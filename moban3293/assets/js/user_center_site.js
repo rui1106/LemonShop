@@ -1,5 +1,5 @@
 var vm = new Vue({
-    el: '#app',
+    el: '#user_center_site',
     data: {
         host: host,
         user_id: sessionStorage.user_id || localStorage.user_id,
@@ -236,7 +236,7 @@ var vm = new Vue({
             let token = localStorage.token;
             axios.get(this.host + '/addresses/', {
                 headers: {
-                          'Authorization': 'JWT ' + token
+                    'Authorization': 'JWT ' + token
                 },
                 responseType: 'json',
                 withCredentials:true

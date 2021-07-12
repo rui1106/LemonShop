@@ -1,0 +1,55 @@
+.common_list_con {
+    width: 1200px;
+    border: 1px solid #dddddd;
+    border-top: 2px solid #FF90A3;
+    margin: 10px auto 0;
+    background-color: #f7f7f7;
+    position: relative;
+    
+}
+
+.common_title{width:1200px;margin:20px auto 0;font-size:14px;}
+
+.common_list_con{width:1200px;border:1px solid #dddddd;border-top:2px solid #e3101e;margin:10px auto 0;background-color:#f7f7f7;position:relative;}
+
+.common_list_con dl{margin:20px;}
+.common_list_con dt{font-size:14px;font-weight:bold;margin-bottom:10px}
+.common_list_con dd{margin-bottom:10px;}
+.common_list_con dd.current{font-size:14px;font-weight:bold;}
+.common_list_con dd input{vertical-align:bottom;margin-right:10px}
+
+.order_success{
+	margin:30px auto;
+	background:url(../img/success.png) 50px center no-repeat;
+}
+
+.order_success p{
+	text-indent:140px;
+	margin-bottom:10px;
+}
+
+.order_success p em{
+	font-size:20px;
+	color:#fe0000;
+}
+.order_success p a{
+	color:#65C4EB;
+}
+.order_success p a:hover{
+	text-decoration:underline;
+}
+.order_submit a {
+    width: 160px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #fe0000;
+    color: #FFFFFF;
+    font-size: 16px;
+    display: block;
+    float: right;
+}
+.order_submit {
+    width: 1200px;
+    margin: 20px auto;
+}

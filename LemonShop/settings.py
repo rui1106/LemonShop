@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.goods',
     'apps.carts',
+    'apps.orders'
 ]
 
 MIDDLEWARE = [
@@ -231,3 +232,13 @@ JWT_AUTH = {
     'JWT_RESPONSE_PAYLOAD_HANDLER':
         'apps.users.utils.jwt_response_payload_handler',
 }
+
+################支付宝 配置
+ALIPAY_APPID = '2021000117671948'
+ALIPAY_DEBUG = True
+ALIPAY_URL = 'https://openapi.alipaydev.com/gateway.do?'
+ALIPAY_RETURN_URL = 'http://www.meiduo.site:8080/pay_success.html'
+# 应用私钥
+APP_PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'apps/pay/keys/app_private_key.pem')
+# 支付宝公钥
+ALIPAY_PUBLIC_KEY_PATH = os.path.join(BASE_DIR, 'apps/pay/keys/alipay_public_key.pem')
