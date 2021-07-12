@@ -57,12 +57,16 @@ var vm = new Vue({
             return null;
         },
          next_operate: function(){
+            let token = localStorage.token;
             if (this.pay_method == 1) {
                 location.href = '/index.html';
             } else {
                 // 发起支付
                 var url = this.host+'/payment/'+this.order_id+'/'
                 axios.get(url, {
+                    headers: {
+                    'Authorization': 'JWT ' + token
+                    },
                         withCredentials:true,
                         responseType: 'json'
                     })
