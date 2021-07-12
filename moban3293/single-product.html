@@ -571,16 +571,16 @@
                                 <div class="product-quantity d-flex align-items-center">
                                     <div class="quantity-field">
                                         <label for="qty">Qty</label>
-                                        <input type="number" id="qty" min="1" max="100" value="1" />
+                                        <input type="number" id="qty" min="1" max="100" value="1" v-model="count"/>
                                     </div>
 
-                                    <a href="cart.html" class="btn btn-cart-large"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                                    <a href="#" class="btn btn-cart-large" @click=add_cart(shopdetail.id)><i class="fa fa-shopping-cart"></i> 添加购物车</a>
                                 </div>
 
                                 <div class="product-btn-group">
-                                    <a href="wishlist.html" class="btn btn-round btn-cart"><i class="fa fa-heart"></i></a>
-                                    <a href="compare.html" class="btn btn-round btn-cart"><i class="fa fa-exchange"></i></a>
-                                    <a href="single-product-gruop.html" class="btn btn-round btn-cart"><i class="fa fa-envelope-o"></i></a>
+                                    <!-- <a href="wishlist.html" class="btn btn-round btn-cart"><i class="fa fa-heart"></i></a> -->
+                                    <!-- <a href="compare.html" class="btn btn-round btn-cart"><i class="fa fa-exchange"></i></a> -->
+                                    <!-- <a href="single-product-gruop.html" class="btn btn-round btn-cart"><i class="fa fa-envelope-o"></i></a> -->
                                 </div>
                             </div>
                         </div>

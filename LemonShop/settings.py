@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.verifications',
     'corsheaders',
+    'rest_framework',
     'apps.users',
-    'apps.goods'
+    'apps.goods',
+    'apps.carts',
 ]
 
 MIDDLEWARE = [
@@ -117,13 +119,13 @@ CACHES = {
     #         "CLIENT_CLASS": "django_redis.client.DefaultClient",
     #     }
     # },
-    # "carts": {  # carts
-    #     "BACKEND": "django_redis.cache.RedisCache",
-    #     "LOCATION": "redis://127.0.0.1:6379/4",
-    #     "OPTIONS": {
-    #         "CLIENT_CLASS": "django_redis.client.DefaultClient",
-    #     }
-    # },
+    "carts": {  # carts
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/4",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    },
 }
 
 # Password validation
@@ -212,6 +214,8 @@ LOGGING = {
         },
     }
 }
+# SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+# SESSION_CACHE_ALIAS = "session"
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

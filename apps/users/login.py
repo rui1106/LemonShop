@@ -41,7 +41,7 @@ class AdminJSONWebTokenSerializer(JSONWebTokenSerializer):
 
 
 class AdminJSONWebTokenView(JSONWebTokenAPIView):
-    serializer_class = AdminJSONWebTokenSerializer
+    serializer_class = JSONWebTokenSerializer
 
 
 admin_jwt_token = AdminJSONWebTokenView.as_view()

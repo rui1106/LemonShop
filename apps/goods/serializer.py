@@ -6,7 +6,7 @@ from apps.goods.models import GoodsCategory, SKU
 class GoodsCategoryModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = GoodsCategory
-        fields = ['name']
+        fields = '__all__'
 
 
 class ShopModelSerializer(serializers.ModelSerializer):

@@ -212,7 +212,7 @@
                         </button>
                         <ul class="category-list-menu">
                             <li class="category-item-parent dropdown-show" v-for="category in categorysList">
-                                <a href="shop-list.html?category_id={{category.name}}" class="category-item arrow-tog" >
+                                <a href="#" @click=show_shop(category.id) class="category-item arrow-tog" >
                                     <img src="assets/img/icons/desktop.png" alt="Computer"/>
                                     <span>{{category.name}}</span>
                                 </a>

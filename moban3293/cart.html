@@ -37,7 +37,7 @@
 </head>
 
 <body>
-
+<div id='cart'>
 <!--== Start Header Section ==-->
 <header id="header-area">
     <!-- Start PreHeader Area -->
@@ -499,27 +499,27 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th class="pro-thumbnail">Thumbnail</th>
-                            <th class="pro-title">Product</th>
+                            <th class="pro-thumbnail">图片</th>
+                            <th class="pro-title">名字</th>
                             <th class="pro-price">Price</th>
                             <th class="pro-quantity">Quantity</th>
                             <th class="pro-subtotal">Total</th>
                             <th class="pro-remove">Remove</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody v-for = "sku in cart_goods">
                         <tr>
                             <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="assets/img/product-1.jpg"
                                                                        alt="Product"/></a></td>
-                            <td class="pro-title"><a href="#">Zeon Zen 4 Pro</a></td>
-                            <td class="pro-price"><span>$295.00</span></td>
+                            <td class="pro-title"><a href="#">{{sku.name}}</a></td>
+                            <td class="pro-price"><span>${{sku.price}}</span></td>
                             <td class="pro-quantity">
-                                <div class="pro-qty"><input type="text" value="1"></div>
+                                <div class="pro-qty"><input type="text" value="1" v-model="sku.count" @click=update_cart(sku.id)></div>
                             </td>
-                            <td class="pro-subtotal"><span>$295.00</span></td>
-                            <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
+                            <td class="pro-subtotal"><span>${{sku.amount}}</span></td>
+                            <td class="pro-remove"><a href="#" @click=on_delete(sku.id)><i class="fa fa-trash-o"></i></a></td>
                         </tr>
-                        <tr>
+                      <!--   <tr>
                             <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="assets/img/product-2.jpg"
                                                                        alt="Product"/></a></td>
                             <td class="pro-title"><a href="#">Aquet Drone D 420</a></td>
@@ -551,7 +551,7 @@
                             </td>
                             <td class="pro-subtotal"><span>$110.00</span></td>
                             <td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                        </tr>
+                        </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -559,12 +559,12 @@
                 <!-- Cart Update Option -->
                 <div class="cart-update-option d-block d-lg-flex">
                     <div class="apply-coupon-wrapper">
-                        <form action="#" method="post" class=" d-block d-md-flex">
+                        <!-- <form action="#" method="post" class=" d-block d-md-flex">
                             <input type="text" placeholder="Enter Your Coupon Code"/>
                             <button class="btn">Apply Coupon</button>
-                        </form>
+                        </form> -->
                     </div>
-                    <div class="cart-update">
+                    <div class="cart-update" >
                         <a href="#" class="btn">Update Cart</a>
                     </div>
                 </div>
@@ -581,15 +581,15 @@
                             <table class="table table-bordered">
                                 <tr>
                                     <td>Sub Total</td>
-                                    <td>$230</td>
+                                    <td>${{result}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Shipping</td>
-                                    <td>$70</td>
+                                    <td>运费</td>
+                                    <td>$10</td>
                                 </tr>
                                 <tr>
                                     <td>Total</td>
-                                    <td class="total-amount">$300</td>
+                                    <td class="total-amount">${{total_prices}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -637,7 +637,7 @@
     </div>
 </div>
 <!--== End Newsletter Area ==-->
-
+</div>
 <!--== Start Footer Area ==-->
 <footer id="footer-area">
     <!-- Footer Widget Area Start -->
@@ -886,5 +886,6 @@
 <script type="text/javascript" src="/assets/js/axios-0.18.0.min.js"></script>
 <script type="text/javascript" src="/assets/js/vue-2.5.16.js"></script>
 <script src="assets/js/index.js"></script>
+<script src="assets/js/cart.js"></script>
 </body>
 </html>

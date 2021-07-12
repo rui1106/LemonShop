@@ -64,6 +64,12 @@ var vm = new Vue({
                 .catch(error => {
                     console.log(error.response);
                 })
-        },
+    },
+    show_shop:function(id){
+              location.href = 'shop-list.html?category_id='+id;
+              // this.$router.push({path:'/single-product.html',query:{sku_id:id}});
+
+    },
+
   }
 });

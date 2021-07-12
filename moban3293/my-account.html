@@ -25,6 +25,7 @@
 <link href="assets/css/helper.min.css" rel="stylesheet">
 <!--=== Main Style CSS ===-->
 <link href="assets/css/style.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="assets/css/user_address.css">
 
 <!-- Modernizer JS -->
 <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
@@ -36,8 +37,9 @@
 </head>
 
 <body>
- 
+
 <!--== Start Header Section ==-->
+<div id="app">
 <header id="header-area">
     <!-- Start PreHeader Area -->
     <div class="preheader-area">
@@ -164,7 +166,7 @@
                                                                            alt="Products"/></a>
                                     </figure>
                                     <div class="product-details">
-                                        <h2><a href="#">Sprite Yoga Companion Kit</a></h2>
+                                        <h2></a href="#">Sprite Yoga Companion Kit</a></h2>
                                         <div class="cal d-flex align-items-center">
                                             <span class="quantity">1</span>
                                             <span class="multiplication">X</span>
@@ -500,18 +502,18 @@
                                 <a href="#dashboad" class="active" data-toggle="tab"><i class="fa fa-dashboard"></i>
                                     Dashboard</a>
 
-                                <a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> Orders</a>
+                             <!--    <a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> Orders</a>
 
                                 <a href="#download" data-toggle="tab"><i class="fa fa-cloud-download"></i> Download</a>
 
                                 <a href="#payment-method" data-toggle="tab"><i class="fa fa-credit-card"></i> Payment
-                                    Method</a>
+                                    Method</a> -->
 
-                                <a href="#address-edit" data-toggle="tab"><i class="fa fa-map-marker"></i> address</a>
+                                <a href="#address-edit" data-toggle="tab" @click=get_address><i class="fa fa-map-marker"></i> 地址</a>
 
-                                <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Account Details</a>
+                                <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> 账户详细资料</a>
 
-                                <a href="login-register.html"><i class="fa fa-sign-out"></i> Logout</a>
+                                <a href="login-register.html"><i class="fa fa-sign-out"></i> 退出</a>
                             </div>
                         </div>
                         <!-- My Account Tab Menu End -->
@@ -626,20 +628,22 @@
                                 <!-- Single Tab Content End -->
 
                                 <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade" id="address-edit" role="tabpanel">
-                                    <div class="myaccount-content">
-                                        <h3>Billing Address</h3>
+                                <div class="tab-pane fade" id="address-edit" role="tabpanel" >
+                                    <div class="myaccount-content" v-for="(address, index) in addresses">
+                                        <h3>{{ address.receiver }}<span @click="del_address(index)" style="float: right;font-size: 20px;line-height: 22px;cursor: pointer">×</span></h3>
 
                                         <address>
-                                            <p><strong>Alex Tuntuni</strong></p>
-                                            <p>1355 Market St, Suite 900 <br>
+                                            <p><strong>{{ address.place }}</strong></p>
+                                            <p> <br>
                                                 San Francisco, CA 94103</p>
-                                            <p>Mobile: (123) 456-7890</p>
+                                            <p>Mobile: {{ address.mobile }}</p>
                                         </address>
 
-                                        <a href="#" class="btn d-inline-block"><i class="fa fa-edit"></i> Edit Address</a>
+                                        <a href="#" @click="show_edit(index)" class="btn d-inline-block"><i class="fa fa-edit"></i>编辑收货地址</a>
                                     </div>
+                                    <a href="#" @click="show_add" class="btn d-inline-block" style="float: right;"><i class="fa fa-edit"></i>添加收货地址</a>
                                 </div>
+
                                 <!-- Single Tab Content End -->
 
                                 <!-- Single Tab Content Start -->
@@ -717,8 +721,58 @@
         </div>
     </div>
 </div>
-<!--== Page Content Wrapper End ==-->
 
+<!--== Page Content Wrapper End ==-->
+<div class="pop_con" v-show="is_show_edit">
+    <div class="site_con site_pop">
+            <div class="site_pop_title">
+                <h3 v-if="editing_address_index">编辑收货地址</h3>
+                <h3 v-else>新增收货地址</h3>
+                <a @click="is_show_edit=false">×</a>
+            </div>
+            <form>
+                <div class="form_group">
+                    <label>*收货人：</label>
+                    <input v-model="form_address.receiver" @blur="check_receiver" type="text" name="">
+                    <span v-show="error_receiver" class="error_tip">请填写收件人</span>
+                </div>
+                <!-- <div class="form_group">
+                    <label>*所在地区：</label>
+                    <select v-model="form_address.province_id" style="display: inline-block;">
+                        <option v-for="province in provinces" :value="province.id">{{ province.name }}</option>
+                    </select>
+                    <select v-model="form_address.city_id" style="display: inline-block;">
+                        <option v-for="city in cities" :value="city.id">{{ city.name }}</option>
+                    </select>
+                    <select v-model="form_address.district_id" style="display: inline-block;">
+                        <option v-for="district in districts" :value="district.id">{{ district.name }}</option>
+                    </select>
+                </div> -->
+                <div class="form_group">
+                    <label>*详细地址：</label>
+                    <input v-model="form_address.place" @blur="check_place" type="text" name="">
+                    <span v-show="error_place" class="error_tip">请填写地址信息</span>
+                </div>
+                <div class="form_group">
+                    <label>*手机：</label>
+                    <input v-model="form_address.mobile" @blur="check_mobile" type="text" name="">
+                    <span v-show="error_mobile" class="error_tip">手机信息有误</span>
+                </div>
+                <div class="form_group">
+                    <label>固定电话：</label>
+                    <input v-model="form_address.tel" type="text" name="">
+                </div>
+                <div class="form_group">
+                    <label>邮箱：</label>
+                    <input v-model="form_address.email" @blur="check_email" type="text" name="">
+                    <span v-show="error_email" class="error_tip">邮箱信息有误</span>
+                </div>
+                <input @click="save_address" type="button" name="" value="保 存" class="info_submit">
+                <input @click="is_show_edit=false" type="reset" name="" value="取 消" class="info_submit info_reset">
+            </form>
+    </div>
+    <div class="mask"></div>
+</div>
 <!--== Start Newsletter Area ==-->
 <div class="newsletter-area">
     <div class="container">
@@ -753,7 +807,7 @@
     </div>
 </div>
 <!--== End Newsletter Area ==-->
-
+</div>
 <!--== Start Footer Area ==-->
 <footer id="footer-area">
     <!-- Footer Widget Area Start -->
@@ -1002,5 +1056,6 @@
 <script type="text/javascript" src="/assets/js/axios-0.18.0.min.js"></script>
 <script type="text/javascript" src="/assets/js/vue-2.5.16.js"></script>
 <script src="assets/js/index.js"></script>
+<script src="assets/js/user_center_site.js"></script>
 </body>
 </html>
