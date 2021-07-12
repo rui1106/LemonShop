@@ -496,11 +496,11 @@
                 <!-- Checkout Login Coupon Accordion Start -->
                 <div class="checkoutaccordion" id="checkOutAccordion">
                     <div class="card">
-                        <h3>Returning Customer? <span data-toggle="collapse" data-target="#logInaccordion">Click Here To Login</span></h3>
+                        <!-- <h3>Returning Customer? <span data-toggle="collapse" data-target="#logInaccordion">Click Here To Login</span></h3> -->
 
                         <div id="logInaccordion" class="collapse" data-parent="#checkOutAccordion">
                             <div class="card-body">
-                                <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer, please proceed to the Billing &amp; Shipping section.</p>
+                               <!--  <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer, please proceed to the Billing &amp; Shipping section.</p> -->
                                 <div class="login-reg-form-wrap">
                                     <div class="row">
                                         <div class="col-lg-7 m-auto">
@@ -544,7 +544,8 @@
                     </div>
 
                     <div class="card">
-                        <h3>Have A Coupon? <span data-toggle="collapse" data-target="#couponaccordion">Click Here To Enter Your Code</span></h3>
+                        <!-- <h3>Have A Coupon? <span data-toggle="collapse" data-target="#couponaccordion">Click Here To Enter Your Code</span></h3> -->
+
                         <div id="couponaccordion" class="collapse" data-parent="#checkOutAccordion">
                             <div class="card-body">
                                 <div class="cart-update-option">
@@ -566,10 +567,14 @@
         <div class="row">
             <!-- Checkout Billing Details -->
             <div class="col-lg-6">
-                <div class="checkout-billing-details-wrap">
-                    <h2>Billing Details</h2>
+                <div class="checkout-billing-details-wrap" id="app">
+                    <h2>确认收货地址</h2>
                     <div class="billing-form-wrap">
-                        <form action="#">
+                        <dl><dt>寄送到：</dt> 
+                            <!-- <dd v-for='address in addresses' :class="[(nowsite==address.id)?'current':'']" @click="nowsite=address.id"><input type="radio" name="get_site" :value="address.id" v-model="nowsite">{{ address.place }} （{{ address.receiver }} 收） {{ address.mobile }}</dd>  -->
+                            <dd v-for='address in addresses' :class="[(nowsite==address.id)?'current':'']" @click="nowsite=address.id"><input type="radio" name="get_site" :value="address.id" v-model="nowsite">{{ address.place }} （{{ address.receiver }} 收） {{ address.mobile }}</dd> 
+                        </dl>
+                        <!-- <form action="#">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="single-input-item">
@@ -735,50 +740,52 @@
                                 <label for="ordernote">Order Note</label>
                                 <textarea name="ordernote" id="ordernote" cols="30" rows="3" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                             </div>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
             </div>
 
             <!-- Order Summary Details -->
-            <div class="col-lg-6 mt-5 mt-lg-0">
+            <div class="col-lg-6 mt-5 mt-lg-0"  id= "cart">
                 <div class="order-summary-details">
-                    <h2>Your Order Summary</h2>
+                    <h2>您的订单</h2>
                     <div class="order-summary-content">
                         <!-- Order Summary Table -->
                         <div class="order-summary-table table-responsive text-center">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Products</th>
-                                        <th>Total</th>
+                                        <th>商品</th>
+                                        <th>价格</th>
                                     </tr>
                                 </thead>
 
-                                <tbody>
-                                    <tr>
-                                        <td><a href="single-product.html">Suscipit Vestibulum <strong> × 1</strong></a></td>
-                                        <td>$165.00</td>
+                                <tbody v-for = "sku in cart_goods">
+                                    <tr >
+                                        <td><a href="single-product.html">{{sku.name}} <strong> × {{sku.count}}</strong></a></td>
+                                        <td>${{sku.price}}</td>
                                     </tr>
-                                    <tr>
+                                  <!--   <tr>
                                         <td><a href="single-product.html">Ami Vestibulum suscipit <strong> × 4</strong></a></td>
                                         <td>$165.00</td>
                                     </tr>
                                     <tr>
                                         <td><a href="single-product.html">Vestibulum suscipit <strong> × 2</strong></a></td>
                                         <td>$165.00</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td>Sub Total</td>
-                                        <td><strong>$400</strong></td>
+                                        <td>总计</td>
+                                        <td><strong>${{result}}</strong></td>
                                     </tr>
 
                                     <tr>
-                                        <td>Shipping</td>
-                                        <td class="d-flex justify-content-center">
-                                            <ul class="shipping-type">
+                                        <td>运费</td>
+                                        <td><strong>$10</strong></td>
+                                        <!-- <td class="d-flex justify-content-center"> -->
+
+                                           <!--  <ul class="shipping-type">
                                                 <li>
                                                     <div class="custom-control custom-radio">
                                                         <input type="radio" id="flatrate" name="shipping" class="custom-control-input" checked />
@@ -791,12 +798,12 @@
                                                         <label class="custom-control-label" for="freeshipping">Free Shipping</label>
                                                     </div>
                                                 </li>
-                                            </ul>
+                                            </ul> -->
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Total Amount</td>
-                                        <td><strong>$470</strong></td>
+                                        <td>总金额</td>
+                                        <td><strong>${{total_prices}}</strong></td>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -808,7 +815,7 @@
                                 <div class="payment-method-name">
                                     <div class="custom-control custom-radio">
                                         <input type="radio" id="cashon" name="paymentmethod" value="cash" class="custom-control-input" checked  />
-                                        <label class="custom-control-label" for="cashon">Cash On Delivery</label>
+                                        <label class="custom-control-label" for="cashon">货到付款</label>
                                     </div>
                                 </div>
                                 <div class="payment-method-details" data-method="cash">
@@ -820,7 +827,7 @@
                                 <div class="payment-method-name">
                                     <div class="custom-control custom-radio">
                                         <input type="radio" id="directbank" name="paymentmethod" value="bank" class="custom-control-input" />
-                                        <label class="custom-control-label" for="directbank">Direct Bank Transfer</label>
+                                        <label class="custom-control-label" for="directbank">支付宝</label>
                                     </div>
                                 </div>
                                 <div class="payment-method-details" data-method="bank">
@@ -828,7 +835,7 @@
                                 </div>
                             </div>
 
-                            <div class="single-payment-method">
+                           <!--  <div class="single-payment-method">
                                 <div class="payment-method-name">
                                     <div class="custom-control custom-radio">
                                         <input type="radio" id="checkpayment" name="paymentmethod" value="check" class="custom-control-input" />
@@ -850,16 +857,16 @@
                                 <div class="payment-method-details" data-method="paypal">
                                     <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="summary-footer-area">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="terms" required />
-                                    <label class="custom-control-label" for="terms">I have read and agree to the website <a
-                                            href="index.html">terms and conditions.</a></label>
+                                    <label class="custom-control-label" for="terms">我已阅读并同意<a
+                                            href="index.html">网站条款和条件 .</a></label>
                                 </div>
 
-                                <a href="shop.html" class="btn"> Place Order</a>
+                                <a href="shop.html" class="btn">提交订单</a>
                             </div>
                         </div>
                     </div>
@@ -1154,5 +1161,7 @@
 <script type="text/javascript" src="/assets/js/axios-0.18.0.min.js"></script>
 <script type="text/javascript" src="/assets/js/vue-2.5.16.js"></script>
 <script src="assets/js/index.js"></script>
+<script src="assets/js/user_center_site.js"></script>
+<script src="assets/js/cart.js"></script>
 </body>
 </html>

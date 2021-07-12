@@ -34,7 +34,7 @@ var vm = new Vue({
         this.username = localStorage.username;
 
         // 获取地址页中的地址
-        // this.get_address();
+        this.get_address();
 
         // // 获取省份数据:
         // this.get_province();

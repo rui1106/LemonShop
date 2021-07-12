@@ -190,7 +190,7 @@ class AddressView(APIView):
 
         addresses_list = []
         for address in addresses:
-            print(address)
+            # print(address)
             addresses_list.append({
                 "id": address.id,
                 "title": address.title,
