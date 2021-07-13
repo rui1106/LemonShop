@@ -238,7 +238,7 @@ JWT_AUTH = {
 ALIPAY_APPID = '2021000117671948'
 ALIPAY_DEBUG = True
 ALIPAY_URL = 'https://openapi.alipaydev.com/gateway.do?'
-ALIPAY_RETURN_URL = 'http://www.meiduo.site:8080/pay_success.html'
+ALIPAY_RETURN_URL = 'http://127.0.0.1:8080/pay_success.html'
 # 应用私钥
 APP_PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'apps/pay/keys/app_private_key.pem')
 # 支付宝公钥

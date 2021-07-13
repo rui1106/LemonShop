@@ -119,7 +119,7 @@ class PaymentStatusView(APIView):
             # 修改订单状态为待评价
             OrderInfo.objects.filter(order_id=order_id, status=OrderInfo.ORDER_STATUS_ENUM['UNPAID']).update(
                 status=OrderInfo.ORDER_STATUS_ENUM["UNSEND"])
-
+            print(trade_id)
             # 响应trade_id
             return JsonResponse({'code': 0, 'errmsg': 'OK', 'trade_id': trade_id})
         else:
