@@ -59,7 +59,7 @@ var vm = new Vue({
        // 从路径中提取sku_id  single-product.html?sku_id=1
         get_category_id: function(){
           // console.log("document.location.pathname="+document.location.toString())
-            var re = /\/shop-list.html\?category_id=(\d)$/;
+            var re = /\/shop-list.html\?category_id=(\d+)$/;
             this.category_id = document.location.toString().match(re)[1];
             if(!this.category_id){
               this.category_id = null;

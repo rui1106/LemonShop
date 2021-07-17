@@ -76,7 +76,7 @@ class PayUrlView(APIView):
 
 
 class PaymentStatusView(APIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def put(self, request):
         # for django users

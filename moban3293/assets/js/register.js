@@ -208,7 +208,7 @@ var vm = new Vue({
                 })
                     .then(response => {
                         if (response.data.code==0) {
-                           location.href = 'index.html';
+                           location.href = 'login.html';
                         }
                         if (response.data.code == 400) {
                             alert(response.data.errmsg)

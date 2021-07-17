@@ -66,6 +66,7 @@ var vm = new Vue({
                   // console.log(response.data.code);
                   if(response.data.code==0){
                     alert('删除购物车成功')
+                    this.show_cart()
                   }else{
                     alert(response.data.errmsg);
                   }

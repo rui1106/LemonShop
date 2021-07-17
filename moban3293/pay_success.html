@@ -480,7 +480,11 @@
             token: sessionStorage.token || localStorage.token,
         },
         mounted: function(){
+            let token = localStorage.token;
             axios.put(this.host+'/payment/status/'+document.location.search,{}, {
+                headers: {
+                      'Authorization': 'JWT ' + token
+                   },
                     responseType: 'json',
                     withCredentials:true
                 })
